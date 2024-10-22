@@ -2,11 +2,35 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useGlobalState } from "@/app/context/globalProvider"
+import Image from 'next/image';
+import menu from "@/app/utils/menu";
+import Link from 'next/link';
 
 function Sidebar () {
     const {theme} = useGlobalState();
     return (
-        <SidebarStyled theme={theme}>Sidebar</SidebarStyled>
+        <SidebarStyled theme={theme}>
+            <div className="profile">
+                <div className="profile-overlay"></div>
+                <div className="image">
+                    <Image width={70} height={70} src="/pfp.png" alt="profile" />
+                </div>
+                <h1>
+                    <span>John</span>
+                    <span>Doe</span>
+                </h1>
+            </div>
+            <ul className="nav-items">
+                {menu.map((item) => {
+                    return <li>
+                        {item.icon}
+                        <Link href={item.link}>
+                            {item.title}
+                        </Link>
+                    </li>;
+                })}
+            </ul>
+        </SidebarStyled>
     )
 }
 
