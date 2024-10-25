@@ -4,6 +4,7 @@ import Sidebar from "./components/sidebar/sidebar";
 import "./globals.css";
 import GlobalStyleProvider from "./providers/GlobalStyleProvider";
 import ContextProvider from "./providers/ContextProvider";
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,6 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <head>
       <link 
@@ -45,5 +47,6 @@ export default function RootLayout({
         </ContextProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
