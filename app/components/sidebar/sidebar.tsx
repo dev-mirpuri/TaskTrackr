@@ -30,17 +30,18 @@ function Sidebar () {
                 </h1>
             </div>
             <ul className="nav-items">
-                {menu.map((item) => {
+                {menu.map((item, index) => {
                     const link = item.link;
-                    return <li className={`nav-item ${pathname===link ? "active" : ""}`} 
-                        onClick={() => {
-                            handleClick(link);
-                        }}>
-                        {item.icon}
-                        <Link href={link}>
-                            {item.title}
-                        </Link>
-                    </li>;
+                    return (
+                     <li
+                            key={item.id || index} // Add a unique key here
+                            className={`nav-item ${pathname === link ? "active" : ""}`}
+                            onClick={() => handleClick(link)}
+                     >
+                            {item.icon}
+                            <Link href={link}>{item.title}</Link>
+                     </li>
+                 );
                 })}
             </ul>
             <button></button>
